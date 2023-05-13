@@ -11,7 +11,7 @@ app.use((req, res, next) => {
     next();
   }
 });
-// console.log(path.join(__dirname, "public"));
+// console.log(path.join(__dirname, "build/app.bundle.js"));
 app.use(express.static(__dirname));
 
 app.get("*", (req, res) => {
