@@ -1,7 +1,7 @@
 body {
   margin: 0;
   color: #fff;
-  font-family: "Roboto", sans-serif;
+  font-family: "Secular One", sans-serif;
   font-size: 16px;
   overscroll-behavior: none;
   position: fixed;
@@ -38,6 +38,7 @@ button,
 input,
 select {
   pointer-events: auto;
+  font-family: "Secular One", sans-serif;
 }
 
 .dg.ac {
@@ -179,9 +180,9 @@ select {
   margin: 0 auto;
   margin-bottom: 20vh;
   font-size: 25px;
-  background-color: grey;
+  background-color: #1b263b;
   border: none;
-  color: #fffc00;
+  color: #fca311;
   border-radius: 12px;
   padding: 15px 30px 15px 30px;
   -webkit-appearance: none;
@@ -209,7 +210,7 @@ select {
 }*/
 
 .yellow-text {
-  color: #fffc00;
+  color: #fca311;
 }
 
 #static-site-link {
@@ -238,7 +239,7 @@ select {
   position: absolute;
   display: block;
   border-radius: 50%;
-  border: 10px solid #fffc00;
+  border: 10px solid #fca311;
 }
 
 .trinity-rings-spinner .circle:nth-child(1) {
@@ -291,10 +292,10 @@ select {
 .loading-text-div {
   box-sizing: border-box;
   position: absolute;
-  font-size: 26px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #fffc00;
+  font-size: 3rem;
+  font-family: "Secular One", sans-serif;
+  font-weight: 400;
+  color: #fca311;
 }
 
 @keyframes blink {

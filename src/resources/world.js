@@ -1,9 +1,9 @@
 // 创建3d世界物体
 
-import * as THREE from 'three';
-import Stats from 'stats.js';
-import galaxyVertexShader from '../jsm/vertex.glsl';
-import galaxyFragmentShader from '../jsm/fragment.glsl';
+import * as THREE from "three";
+import Stats from "stats.js";
+import galaxyVertexShader from "../../public/jsm/vertex.glsl";
+import galaxyFragmentShader from "../../public/jsm/fragment.glsl";
 
 // 定义three.js 场景
 export let clock,
@@ -32,7 +32,7 @@ export function createWorld() {
     45,
     window.innerWidth / window.innerHeight,
     1,
-    5000
+    5000,
   );
   camera.position.set(0, 30, 70);
 
@@ -65,6 +65,7 @@ export function createWorld() {
   dirLight.shadow.camera.far = 15000;
 
   // 初始化渲染器
+  //convas
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -83,7 +84,7 @@ export function createWorld() {
 // 地图中的旋转粒子堆
 export function glowingParticles() {
   var particleTextureLoader = new THREE.TextureLoader(manager);
-  var particleTexture = particleTextureLoader.load('../src/jsm/spark.png');
+  var particleTexture = particleTextureLoader.load("../src/jsm/lensflare0.png");
 
   particleGroup = new THREE.Object3D();
   particleGroup.position.x = -1;
@@ -104,7 +105,7 @@ export function glowingParticles() {
     sprite.position.set(
       Math.random() - 0.5,
       Math.random() - 0.5,
-      Math.random() - 0.5
+      Math.random() - 0.5,
     );
 
     sprite.position.setLength(radiusRange * (Math.random() * 0.1 + 0.9));
@@ -120,8 +121,21 @@ export function glowingParticles() {
 
   scene.add(particleGroup);
 }
+function createBall(x, y, z, xScale, zScale) {
+  let pos = { x: xScale, y: 0, z: 0 };
+  let radius = 2;
+  let quat = { x: 0, y: 0, z: 0, w: 1 };
+  let mass = 3;
 
+  var marble_loader = new THREE.TextureLoader(manager);
+  var marbleTexture = marble_loader.load("./src/jsm/earth.jpg");
+  marbleTexture.wrapS = marbleTexture.wrapT = THREE.RepeatWrapping;
+  marbleTexture.repeat.set(1, 1);
+  marbleTexture.anisotropy = 1;
+  marbleTexture.encoding = THREE.sRGBEncoding;
+}
 // 镜头光晕
+//moon
 export function createLensFlare(x, y, z, xScale, zScale, boxTexture) {
   const boxScale = { x: xScale, y: 0.1, z: zScale };
   let quat = { x: 0, y: 0, z: 0, w: 1 };
@@ -186,8 +200,8 @@ export const generateGalaxy = () => {
   parameters.spin = 1;
 
   parameters.randomnessPower = 3;
-  parameters.insideColor = '#ff6030';
-  parameters.outsideColor = '#1b3984';
+  parameters.insideColor = "#ff6030";
+  parameters.outsideColor = "#1b3984";
   parameters.randomness = 0.2;
 
   let geometry = null;
@@ -235,9 +249,9 @@ export const generateGalaxy = () => {
       radius;
     const randomZ =
       Math.pow(Math.random(), parameters.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1) *
-      parameters.randomness *
-      radius -
+        (Math.random() < 0.5 ? 1 : -1) *
+        parameters.randomness *
+        radius -
       50;
 
     positions[i3] = Math.cos(branchAngle) * radius;
@@ -260,13 +274,13 @@ export const generateGalaxy = () => {
     scales[i] = Math.random();
   }
 
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  geometry.setAttribute('aScale', new THREE.BufferAttribute(scales, 1));
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute("aScale", new THREE.BufferAttribute(scales, 1));
   // 扩散
   geometry.setAttribute(
-    'aRandomness',
-    new THREE.BufferAttribute(randomness, 3)
+    "aRandomness",
+    new THREE.BufferAttribute(randomness, 3),
   );
 
   /**

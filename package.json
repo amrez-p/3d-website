@@ -2,16 +2,19 @@
   "name": "3d-website",
   "version": "1.0.0",
   "description": "",
+  "engines": {},
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open --hot",
     "build": "webpack --mode production --progress",
     "start": "node server.js",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "webpack -p",
+    "preinstall": "node checkNodeVersion",
+    "prestart": "node checkNodeVersion"
   },
   "keywords": [],
-  "author": "AirHua-byte",
+  "author": "Amrez Pirzada",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.3",

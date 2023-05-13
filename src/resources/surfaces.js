@@ -20,7 +20,7 @@ import { scene, manager } from "./world";
 export function simpleText(x, y, z, inputText, fontSize) {
   var text_loader = new THREE.FontLoader();
 
-  text_loader.load("../src/jsm/Poppins_Regular.json", function (font) {
+  text_loader.load("../../jsm/Secular_One_Regular.json", function (font) {
     var xMid, text;
 
     var color = 0xffffff;
@@ -63,7 +63,7 @@ export function simpleText(x, y, z, inputText, fontSize) {
 export function floatingLabel(x, y, z, inputMessage) {
   var text_loader = new THREE.FontLoader();
 
-  text_loader.load("../src/jsm/Poppins_Regular.json", function (font) {
+  text_loader.load("../../jsm/Secular_One_Regular.json", function (font) {
     var xMid, text;
 
     var color = 0xffffff;
@@ -114,7 +114,7 @@ export function allSkillsSection(
   xScale,
   zScale,
   boxTexture,
-  URLLink = null
+  URLLink = null,
 ) {
   const boxScale = { x: xScale, y: 0.1, z: zScale };
   let quat = { x: 0, y: 0, z: 0, w: 1 };

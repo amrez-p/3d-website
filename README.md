@@ -1,1 +1,3 @@
-# 3d-website
+# **3D-website**
+
+- requires node version: 16

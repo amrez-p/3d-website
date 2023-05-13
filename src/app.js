@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import { WEBGL } from './WebGL';
-import * as Ammo from './libs/ammo';
+import * as THREE from "three";
+import { WEBGL } from "./WebGL";
+import * as Ammo from "./libs/ammo";
 // 导入材质
 import {
   billboardTextures,
@@ -9,7 +9,7 @@ import {
   URL,
   stoneTexture,
   woodTexture,
-} from './resources/textures';
+} from "./resources/textures";
 
 // 导入事件监听函数
 import {
@@ -18,7 +18,7 @@ import {
   isTouchscreenDevice,
   touchEvent,
   createJoystick,
-} from './resources/eventHandlers';
+} from "./resources/eventHandlers";
 
 // 导入初始化场景时的加载和处理
 import {
@@ -29,7 +29,7 @@ import {
   startButton,
   noWebGL,
   fadeOutDivs,
-} from './resources/preload';
+} from "./resources/preload";
 
 import {
   clock,
@@ -51,14 +51,14 @@ import {
   galaxyMaterial,
   galaxyClock,
   galaxyPoints,
-} from './resources/world';
+} from "./resources/world";
 
 import {
   simpleText,
   floatingLabel,
   allSkillsSection,
   createTextOnPlane,
-} from './resources/surfaces';
+} from "./resources/surfaces";
 
 import {
   pickPosition,
@@ -66,7 +66,7 @@ import {
   getCanvasRelativePosition,
   rotateCamera,
   launchHover,
-} from './resources/utils';
+} from "./resources/utils";
 
 export let cursorHoverObjects = [];
 
@@ -93,7 +93,7 @@ Ammo().then((Ammo) => {
       dispatcher,
       overlappingPairCache,
       constraintSolver,
-      collisionConfiguration
+      collisionConfiguration,
     );
 
     // add gravity
@@ -118,7 +118,7 @@ Ammo().then((Ammo) => {
         color: 0xffffff,
         transparent: true,
         opacity: 0.25,
-      })
+      }),
     );
     blockPlane.position.set(pos.x, pos.y, pos.z);
     blockPlane.scale.set(scale.x, scale.y, scale.z);
@@ -129,12 +129,12 @@ Ammo().then((Ammo) => {
     transform.setIdentity();
     transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
     transform.setRotation(
-      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w)
+      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w),
     );
     let motionState = new Ammo.btDefaultMotionState(transform);
 
     let colShape = new Ammo.btBoxShape(
-      new Ammo.btVector3(scale.x * 0.5, scale.y * 0.5, scale.z * 0.5)
+      new Ammo.btVector3(scale.x * 0.5, scale.y * 0.5, scale.z * 0.5),
     );
     colShape.setMargin(0.05);
 
@@ -145,7 +145,7 @@ Ammo().then((Ammo) => {
       mass,
       motionState,
       colShape,
-      localInertia
+      localInertia,
     );
     let body = new Ammo.btRigidBody(rigidBodyStruct);
     body.setFriction(10);
@@ -163,7 +163,7 @@ Ammo().then((Ammo) => {
     let mass = 3;
 
     var marble_loader = new THREE.TextureLoader(manager);
-    var marbleTexture = marble_loader.load('./src/jsm/earth.jpg');
+    var marbleTexture = marble_loader.load("../../jsm/earth.jpg");
     marbleTexture.wrapS = marbleTexture.wrapT = THREE.RepeatWrapping;
     marbleTexture.repeat.set(1, 1);
     marbleTexture.anisotropy = 1;
@@ -172,7 +172,7 @@ Ammo().then((Ammo) => {
     //threeJS Section
     let ball = (ballObject = new THREE.Mesh(
       new THREE.SphereGeometry(radius, 32, 32),
-      new THREE.MeshLambertMaterial({ map: marbleTexture })
+      new THREE.MeshLambertMaterial({ map: marbleTexture }),
     ));
 
     ball.geometry.computeBoundingSphere();
@@ -190,7 +190,7 @@ Ammo().then((Ammo) => {
     transform.setIdentity();
     transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
     transform.setRotation(
-      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w)
+      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w),
     );
     let motionState = new Ammo.btDefaultMotionState(transform);
 
@@ -204,7 +204,7 @@ Ammo().then((Ammo) => {
       mass,
       motionState,
       colShape,
-      localInertia
+      localInertia,
     );
     let body = new Ammo.btRigidBody(rbInfo);
     body.setRollingFriction(10);
@@ -215,7 +215,7 @@ Ammo().then((Ammo) => {
     body.setActivationState(STATE.DISABLE_DEACTIVATION);
 
     physicsWorld.addRigidBody(
-      body //collisionGroupRedBall, collisionGroupGreenBall | collisionGroupPlane
+      body, //collisionGroupRedBall, collisionGroupGreenBall | collisionGroupPlane
     );
 
     ball.userData.physicsBody = body;
@@ -234,7 +234,7 @@ Ammo().then((Ammo) => {
 
     //import beach ball texture
     var texture_loader = new THREE.TextureLoader(manager);
-    var beachTexture = texture_loader.load('./src/jsm/BeachBallColor.jpg');
+    var beachTexture = texture_loader.load("../../jsm/BeachBallColor.jpg");
     beachTexture.wrapS = beachTexture.wrapT = THREE.RepeatWrapping;
     beachTexture.repeat.set(1, 1);
     beachTexture.anisotropy = 1;
@@ -243,7 +243,7 @@ Ammo().then((Ammo) => {
     //threeJS Section
     let ball = new THREE.Mesh(
       new THREE.SphereGeometry(radius, 32, 32),
-      new THREE.MeshLambertMaterial({ map: beachTexture })
+      new THREE.MeshLambertMaterial({ map: beachTexture }),
     );
 
     ball.position.set(pos.x, pos.y, pos.z);
@@ -256,7 +256,7 @@ Ammo().then((Ammo) => {
     transform.setIdentity();
     transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
     transform.setRotation(
-      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w)
+      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w),
     );
     let motionState = new Ammo.btDefaultMotionState(transform);
 
@@ -270,7 +270,7 @@ Ammo().then((Ammo) => {
       mass,
       motionState,
       colShape,
-      localInertia
+      localInertia,
     );
     let body = new Ammo.btRigidBody(rbInfo);
 
@@ -292,7 +292,7 @@ Ammo().then((Ammo) => {
     boxTexture,
     URLLink,
     color = 0x000000,
-    transparent = true
+    transparent = true,
   ) {
     const boxScale = { x: scaleX, y: scaleY, z: scaleZ };
     let quat = { x: 0, y: 0, z: 0, w: 1 };
@@ -326,7 +326,7 @@ Ammo().then((Ammo) => {
 
     const linkBox = new THREE.Mesh(
       new THREE.BoxBufferGeometry(boxScale.x, boxScale.y, boxScale.z),
-      materials
+      materials,
     );
     linkBox.position.set(x, y, z);
     linkBox.renderOrder = 1;
@@ -341,7 +341,7 @@ Ammo().then((Ammo) => {
     cursorHoverObjects.push(linkBox);
   }
 
-  // 创建你的信息栏 (AirHua Life is loving)
+  // 创建你的信息栏 (Amrez 3D World)
   function Words(x, y, z) {
     const boxScale = { x: 25, y: 3, z: 2 };
     let quat = { x: 0, y: 0, z: 0, w: 1 };
@@ -351,7 +351,7 @@ Ammo().then((Ammo) => {
       new THREE.BoxBufferGeometry(boxScale.x, boxScale.y, boxScale.z),
       new THREE.MeshPhongMaterial({
         color: 0xff6600,
-      })
+      }),
     );
 
     linkBox.position.set(x, y, z);
@@ -362,21 +362,21 @@ Ammo().then((Ammo) => {
     addRigidPhysics(linkBox, boxScale);
   }
 
-  // 'AirHua'
+  // 'Amrez's'
   function loadRyanText() {
     var text_loader = new THREE.FontLoader();
 
-    text_loader.load('./src/jsm/Poppins_Regular.json', function (font) {
+    text_loader.load("../../jsm/Secular_One_Regular.json", function (font) {
       var xMid, text;
 
-      var color = 0xfffc00;
+      var color = 0xfca311;
 
       var textMaterials = [
         new THREE.MeshBasicMaterial({ color: color }), // front
         new THREE.MeshPhongMaterial({ color: color }), // side
       ];
 
-      var geometry = new THREE.TextGeometry("AirHua", {
+      var geometry = new THREE.TextGeometry("Amrez's", {
         font: font,
         size: 3,
         height: 0.5,
@@ -406,21 +406,21 @@ Ammo().then((Ammo) => {
     });
   }
 
-  //create "Life is loving"
+  //create "3D-World"
   function loadEngineerText() {
     var text_loader = new THREE.FontLoader();
 
-    text_loader.load('./src/jsm/Poppins_Regular.json', function (font) {
+    text_loader.load("../../jsm/Poppins_Regular.json", function (font) {
       var xMid, text;
 
-      var color = 0x00ff08;
+      var color = 0xfca311;
 
       var textMaterials = [
         new THREE.MeshBasicMaterial({ color: color }), // front
         new THREE.MeshPhongMaterial({ color: color }), // side
       ];
 
-      var geometry = new THREE.TextGeometry('Life is loving', {
+      var geometry = new THREE.TextGeometry("3D-World", {
         font: font,
         size: 1.5,
         height: 0.5,
@@ -456,7 +456,7 @@ Ammo().then((Ammo) => {
     z,
     textureImage = billboardTextures.grassImage,
     urlLink,
-    rotation = 0
+    rotation = 0,
   ) {
     const billboardPoleScale = { x: 1, y: 5, z: 1 };
     const billboardSignScale = { x: 30, y: 15, z: 1 };
@@ -468,11 +468,11 @@ Ammo().then((Ammo) => {
       new THREE.BoxBufferGeometry(
         billboardPoleScale.x,
         billboardPoleScale.y,
-        billboardPoleScale.z
+        billboardPoleScale.z,
       ),
       new THREE.MeshStandardMaterial({
         map: loader.load(woodTexture),
-      })
+      }),
     );
 
     const texture = loader.load(textureImage);
@@ -499,9 +499,9 @@ Ammo().then((Ammo) => {
       new THREE.BoxGeometry(
         billboardSignScale.x,
         billboardSignScale.y,
-        billboardSignScale.z
+        billboardSignScale.z,
       ),
-      materials
+      materials,
     );
 
     billboardPole.position.x = x;
@@ -538,7 +538,7 @@ Ammo().then((Ammo) => {
     z,
     textureImage = billboardTextures.grassImage,
     urlLink,
-    rotation = 0
+    rotation = 0,
   ) {
     const billboardPoleScale = { x: 1, y: 2.5, z: 1 };
     const billboardSignScale = { x: 15, y: 20, z: 1 };
@@ -549,11 +549,11 @@ Ammo().then((Ammo) => {
       new THREE.BoxBufferGeometry(
         billboardPoleScale.x,
         billboardPoleScale.y,
-        billboardPoleScale.z
+        billboardPoleScale.z,
       ),
       new THREE.MeshStandardMaterial({
         map: loader.load(woodTexture),
-      })
+      }),
     );
     const texture = loader.load(textureImage);
     texture.magFilter = THREE.LinearFilter;
@@ -579,9 +579,9 @@ Ammo().then((Ammo) => {
       new THREE.BoxGeometry(
         billboardSignScale.x,
         billboardSignScale.y,
-        billboardSignScale.z
+        billboardSignScale.z,
       ),
-      materials
+      materials,
     );
 
     billboardPole.position.x = x;
@@ -622,7 +622,7 @@ Ammo().then((Ammo) => {
         color: 0xffffff,
         opacity: 0.75,
         transparent: true,
-      })
+      }),
     );
 
     wall.position.x = x;
@@ -646,7 +646,7 @@ Ammo().then((Ammo) => {
         color: 0xffffff,
         opacity: 0.75,
         transparent: true,
-      })
+      }),
     );
 
     wall.position.x = x;
@@ -702,7 +702,7 @@ Ammo().then((Ammo) => {
           quat,
           new THREE.MeshStandardMaterial({
             map: loader.load(stoneTexture),
-          })
+          }),
         );
         brick.castShadow = true;
         brick.receiveShadow = true;
@@ -723,10 +723,10 @@ Ammo().then((Ammo) => {
   function createBrick(sx, sy, sz, mass, pos, quat, material) {
     var threeObject = new THREE.Mesh(
       new THREE.BoxBufferGeometry(sx, sy, sz, 1, 1, 1),
-      material
+      material,
     );
     var shape = new Ammo.btBoxShape(
-      new Ammo.btVector3(sx * 0.5, sy * 0.5, sz * 0.5)
+      new Ammo.btVector3(sx * 0.5, sy * 0.5, sz * 0.5),
     );
     shape.setMargin(0.05);
 
@@ -744,7 +744,7 @@ Ammo().then((Ammo) => {
     transform.setIdentity();
     transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
     transform.setRotation(
-      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w)
+      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w),
     );
     var motionState = new Ammo.btDefaultMotionState(transform);
 
@@ -755,7 +755,7 @@ Ammo().then((Ammo) => {
       mass,
       motionState,
       physicsShape,
-      localInertia
+      localInertia,
     );
     var body = new Ammo.btRigidBody(rbInfo);
 
@@ -789,7 +789,7 @@ Ammo().then((Ammo) => {
 
     var mesh = new THREE.Mesh(
       geom,
-      new THREE.MeshBasicMaterial({ color: 0xffffff })
+      new THREE.MeshBasicMaterial({ color: 0xffffff }),
     );
     mesh.rotation.x = -Math.PI * 0.5;
     //mesh.rotation.z = -90;
@@ -808,13 +808,13 @@ Ammo().then((Ammo) => {
     transform.setIdentity();
     transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
     transform.setRotation(
-      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w)
+      new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w),
     );
 
     var localInertia = new Ammo.btVector3(0, 0, 0);
     var motionState = new Ammo.btDefaultMotionState(transform);
     let colShape = new Ammo.btBoxShape(
-      new Ammo.btVector3(scale.x * 0.5, scale.y * 0.5, scale.z * 0.5)
+      new Ammo.btVector3(scale.x * 0.5, scale.y * 0.5, scale.z * 0.5),
     );
     colShape.setMargin(0.05);
     colShape.calculateLocalInertia(mass, localInertia);
@@ -822,7 +822,7 @@ Ammo().then((Ammo) => {
       mass,
       motionState,
       colShape,
-      localInertia
+      localInertia,
     );
     let body = new Ammo.btRigidBody(rbInfo);
     body.setActivationState(STATE.DISABLE_DEACTIVATION);
@@ -893,18 +893,18 @@ Ammo().then((Ammo) => {
   // 点击进入事件
   function startButtonEventListener() {
     for (let i = 0; i < fadeOutDivs.length; i++) {
-      fadeOutDivs[i].classList.add('fade-out');
+      fadeOutDivs[i].classList.add("fade-out");
     }
     setTimeout(() => {
-      document.getElementById('preload-overlay').style.display = 'none';
+      document.getElementById("preload-overlay").style.display = "none";
     }, 750);
 
-    startButton.removeEventListener('click', startButtonEventListener);
-    document.addEventListener('click', launchClickPosition);
+    startButton.removeEventListener("click", startButtonEventListener);
+    document.addEventListener("click", launchClickPosition);
     createBeachBall();
 
     setTimeout(() => {
-      document.addEventListener('mousemove', launchHover);
+      document.addEventListener("mousemove", launchHover);
     }, 1000);
   }
 
@@ -938,43 +938,42 @@ Ammo().then((Ammo) => {
 
   // 窗口调整
   function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-    
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderFrame()
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderFrame();
   }
 
   manager.onLoad = function () {
     var readyStateCheckInterval = setInterval(function () {
-      if (document.readyState === 'complete') {
+      if (document.readyState === "complete") {
         clearInterval(readyStateCheckInterval);
         for (let i = 0; i < preloadDivs.length; i++) {
-          preloadDivs[i].style.visibility = 'hidden';
-          preloadDivs[i].style.display = 'none';
+          preloadDivs[i].style.visibility = "hidden";
+          preloadDivs[i].style.display = "none";
         }
         for (let i = 0; i < postloadDivs.length; i++) {
-          postloadDivs[i].style.visibility = 'visible';
-          postloadDivs[i].style.display = 'block';
+          postloadDivs[i].style.visibility = "visible";
+          postloadDivs[i].style.display = "block";
         }
       }
     }, 1000);
   };
 
-  manager.onError = function (url) {
-  };
+  manager.onError = function (url) {};
 
-  startButton.addEventListener('click', startButtonEventListener);
+  startButton.addEventListener("click", startButtonEventListener);
 
   // 开启很卡
   // window.addEventListener('resize', onWindowResize);
 
   if (isTouchscreenDevice()) {
-    document.getElementById('appDirections').innerHTML =
-      '使用左下角的操纵杆移动球。请以纵向方向使用您的设备！';
-    createJoystick(document.getElementById('joystick-wrapper'));
-    document.getElementById('joystick-wrapper').style.visibility = 'visible';
-    document.getElementById('joystick').style.visibility = 'visible';
+    document.getElementById("appDirections").innerHTML =
+      "使用左下角的操纵杆移动球。请以纵向方向使用您的设备！";
+    createJoystick(document.getElementById("joystick-wrapper"));
+    document.getElementById("joystick-wrapper").style.visibility = "visible";
+    document.getElementById("joystick").style.visibility = "visible";
   }
 
   // 创建函数
@@ -996,9 +995,9 @@ Ammo().then((Ammo) => {
       -80,
       2.5,
       -70,
-      billboardTextures.blogTexture,
-      URL.blog,
-      Math.PI * 0.22
+      billboardTextures.netflixTexture,
+      URL.netflix,
+      Math.PI * 0.22,
     );
 
     // 第二块展板
@@ -1006,9 +1005,9 @@ Ammo().then((Ammo) => {
       -45,
       2.5,
       -78,
-      billboardTextures.musicTexture,
-      URL.music,
-      Math.PI * 0.17
+      billboardTextures.sneakerTexture,
+      URL.sneaker,
+      Math.PI * 0.17,
     );
 
     // 第三块展板
@@ -1016,9 +1015,9 @@ Ammo().then((Ammo) => {
       -17,
       1.25,
       -75,
-      billboardTextures.fundTexture,
-      URL.fund,
-      Math.PI * 0.15
+      billboardTextures.feedbackTexture,
+      URL.feedback,
+      Math.PI * 0.15,
     );
 
     Words(8, 1, -20);
@@ -1038,10 +1037,10 @@ Ammo().then((Ammo) => {
       boxTexture.Github,
       URL.gitHub,
       0x000000,
-      true
+      true,
     );
 
-    // Bilibili
+    // LinkedIn
     createBox(
       19,
       2,
@@ -1049,10 +1048,10 @@ Ammo().then((Ammo) => {
       4,
       4,
       1,
-      boxTexture.BiliBili,
-      URL.BiliBili,
-      0x000000,
-      false
+      boxTexture.linkedIn,
+      URL.linkedIn,
+      0x0077b5,
+      false,
     );
 
     // 邮箱
@@ -1064,30 +1063,19 @@ Ammo().then((Ammo) => {
       4,
       1,
       boxTexture.mail,
-      'airhua602@gmail.com',
+      "amrezb2c@gmail.com",
       0x000000,
-      false
+      false,
     );
 
     // QQ
-    createBox(
-      35,
-      2,
-      -70,
-      4,
-      4,
-      1,
-      boxTexture.QQ,
-      URL.devTo,
-      0x000000,
-      false
-    );
+    // createBox(35, 2, -70, 4, 4, 1, boxTexture.QQ, URL.devTo, 0x000000, false);
 
     // 浮动文字
-    floatingLabel(11.875, 4.5, -70, 'Github');
-    floatingLabel(19.125, 4.5, -70, 'BiliBili');
-    floatingLabel(26.875, 4.5, -70, 'Email');
-    floatingLabel(35, 4.5, -70, 'QQ');
+    floatingLabel(11.875, 4.5, -70, "Github");
+    floatingLabel(19.125, 4.5, -70, "LinkedIn");
+    floatingLabel(26.875, 4.5, -70, "Email");
+    //  floatingLabel(35, 4.5, -70, "QQ");
 
     // 图片贴图
     allSkillsSection(-50, 0.025, 20, 40, 40, boxTexture.allSkills);
@@ -1108,13 +1096,13 @@ Ammo().then((Ammo) => {
     } else {
       allSkillsSection(9, 0.01, 5, 20, 10, inputText.pcControl);
     }
-    
+
     allSkillsSection(23, 0.01, -60, 20, 10, inputText.link);
 
     // 板块文字
-    simpleText(-50, 0.01, -5, 'SKILLS', 3);
-    simpleText(-42, 0.01, -30, 'WORKS', 3);
-    simpleText(61, 0.01, -15, 'WISHES', 3);
+    simpleText(-50, 0.01, -5, "SKILLS", 3);
+    simpleText(-42, 0.01, -30, "WORKS", 3);
+    simpleText(61, 0.01, -15, "WISHES", 3);
 
     wallOfBricks();
     createTriangle(63, -55);
