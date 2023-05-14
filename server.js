@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public"));
+  res.sendFile(path.resolve(__dirname, "html.index"));
 });
 
 app.listen(port);

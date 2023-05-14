@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [new CompressionPlugin()],
   devServer: {
-    contentBase: path.join(__dirname, "public"),
+    contentBase: path.join(__dirname, ""),
     compress: true,
     watchContentBase: true,
     port: 8082, // 端口

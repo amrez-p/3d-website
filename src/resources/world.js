@@ -2,8 +2,8 @@
 
 import * as THREE from "three";
 import Stats from "stats.js";
-import galaxyVertexShader from "../../public/jsm/vertex.glsl";
-import galaxyFragmentShader from "../../public/jsm/fragment.glsl";
+import galaxyVertexShader from "../jsm/vertex.glsl";
+import galaxyFragmentShader from "../jsm/fragment.glsl";
 
 // 定义three.js 场景
 export let clock,
